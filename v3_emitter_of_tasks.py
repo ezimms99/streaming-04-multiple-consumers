@@ -10,13 +10,14 @@ import csv
 import time
 
 #Sets up a direct link to rabbitmq server.
-def offer_rabbitmq_admin_site():
-    """Offer to open the RabbitMQ Admin website"""
-    ans = input("Would you like to monitor RabbitMQ queues? y or n ")
-    print()
-    if ans.lower() == "y":
-        webbrowser.open_new("http://localhost:15672/#/queues")
+def offer_rabbitmq_admin_site(show_offer):
+    if show_offer == True:
+        """Offer to open the RabbitMQ Admin website"""
+        ans = input("Would you like to monitor RabbitMQ queues? y or n ")
         print()
+        if ans.lower() == "y":
+            webbrowser.open_new("http://localhost:15672/#/queues")
+            print()
 
 def send_message(host: str, queue_name: str, message):
     """
@@ -77,6 +78,6 @@ input_file.close()
 # This allows us to import this module and use its functions
 # without executing the code below.
 # If this is the program being run, then execute the code below
-if __name__ == "__main__":  
+if __name__ == "__main__":
     # ask the user if they'd like to open the RabbitMQ Admin site
-    offer_rabbitmq_admin_site()
+    offer_rabbitmq_admin_site(True)

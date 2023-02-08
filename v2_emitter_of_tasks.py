@@ -21,6 +21,7 @@ def offer_rabbitmq_admin_site():
         webbrowser.open_new("http://localhost:15672/#/queues")
         print()
 
+
 def send_message(host: str, queue_name: str, message: str):
     """
     Creates and sends a message to the queue each execution.
