@@ -1,12 +1,6 @@
 """
     Emily Zimmerman -- 2/6/2023 -- This program listens for tasks from RabbitMQ
 
-    This program listens for work messages contiously. 
-    Start multiple versions to add more workers.  
-
-    Author: Denise Case
-    Date: January 15, 2023
-
 """
 
 import pika
@@ -98,4 +92,4 @@ def main(hn: str = "localhost", qn: str = "task_queue"):
 # If this is the program being run, then execute the code below
 if __name__ == "__main__":
     # call the main function with the information needed
-    main("localhost", "task_queue2")
+    main("localhost", "task_queue3")

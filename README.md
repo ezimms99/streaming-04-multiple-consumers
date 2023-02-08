@@ -54,7 +54,13 @@ Which worker gets which tasks?
 
 - [RabbitMQ Tutorial - Work Queues](https://www.rabbitmq.com/tutorials/tutorial-two-python.html)
 
+## How to use my new Versions
+Examine the excel file and put in the information you want to transmit
+Run the emitter and the listener to see results!
+
 
 ## Screenshot
 
 See a running example with at least 3 concurrent process windows here:
+
+![Alt text](threewindows.PNG)

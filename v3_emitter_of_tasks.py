@@ -1,18 +1,15 @@
 """
     Emily Zimmerman -- 2/6/2023 -- This program emmits different tasks to RabbitMQ server 
 
-    This program sends a message to a queue on the RabbitMQ server.
-    Make tasks harder/longer-running by adding dots at the end of the message.
-
-    Author: Denise Case
-    Date: January 15, 2023
-
 """
 
 import pika
 import sys
 import webbrowser
+import csv
+import time
 
+#Sets up a direct link to rabbitmq server.
 def offer_rabbitmq_admin_site():
     """Offer to open the RabbitMQ Admin website"""
     ans = input("Would you like to monitor RabbitMQ queues? y or n ")
@@ -21,7 +18,7 @@ def offer_rabbitmq_admin_site():
         webbrowser.open_new("http://localhost:15672/#/queues")
         print()
 
-def send_message(host: str, queue_name: str, message: str):
+def send_message(host: str, queue_name: str, message):
     """
     Creates and sends a message to the queue each execution.
     This process runs and finishes.
@@ -54,6 +51,28 @@ def send_message(host: str, queue_name: str, message: str):
         # close the connection to the server
         conn.close()
 
+
+# read from a file to get some data
+input_file = open("tasks.csv", "r")
+
+# create a csv reader for our comma delimited data
+reader = csv.reader(input_file, delimiter=",")
+
+
+for row in reader:
+
+    # prepare a binary (1s and 0s) message to stream
+    message = ",".join(row)
+
+    send_message("localhost", "task_queue3", message)
+
+    # sleep for a few seconds
+    time.sleep(2)
+
+input_file.close()
+
+
+
 # Standard Python idiom to indicate main program entry point
 # This allows us to import this module and use its functions
 # without executing the code below.
@@ -61,10 +80,3 @@ def send_message(host: str, queue_name: str, message: str):
 if __name__ == "__main__":  
     # ask the user if they'd like to open the RabbitMQ Admin site
     offer_rabbitmq_admin_site()
-    # get the message from the command line
-    # if no arguments are provided, use the default message
-    # use the join method to convert the list of arguments into a string
-    # join by the space character inside the quotes
-    message = " ".join(sys.argv[1:]) or "Second task....."
-    # send the message to the queue
-    send_message("localhost","task_queue2",message)

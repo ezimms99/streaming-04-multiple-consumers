@@ -1,5 +1,7 @@
 """
 
+Emily Zimmerman -- 2/6/2023 -- This program listens for tasks from emitter file
+
 Listens for task messages on the queue.
 This process runs continously. 
 

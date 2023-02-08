@@ -1,5 +1,7 @@
 """
 
+Emily Zimmerman -- 2/6/2023 -- This program emmits tasks using RabbitMQ
+
 Creates and sends a task message to the queue each execution.
 This process runs and finishes. 
 Make tasks harder/longer-running by adding dots at the end of the message.
